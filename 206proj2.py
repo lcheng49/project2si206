@@ -1,7 +1,7 @@
 ## SI 206 W17 - Project 2
 
 ## COMMENT HERE WITH:
-## Your name:
+## Your name: Luke Cheng
 ## Anyone you worked with on this project:
 
 ## Below we have provided import statements, comments to separate out the
@@ -27,8 +27,20 @@ from bs4 import BeautifulSoup
 ## find_urls("the internet is awesome #worldwideweb") should return [], empty list
 
 def find_urls(s):
-    pass
-    #Your code here
+    lst = re.findall(r'(https?://\S+)', s)
+    finlist = []
+    for i in lst:
+        if "." not in i:
+            continue
+        temp = 0
+        for j in range(len(i)):
+            if i[j] == ".":
+                if j == (len(i)) - 1 or j == (len(i))- 2:
+                    temp = 1
+        if temp == 1:
+            continue
+        finlist.append(i)
+    return finlist
 
 
 
@@ -38,8 +50,15 @@ def find_urls(s):
 ## http://www.michigandaily.com/section/opinion
 
 def grab_headlines():
-    pass
-    #Your code here
+    base = 'http://www.michigandaily.com/section/opinion'
+    r = requests.get(base)
+    Busu = BeautifulSoup(r.text, "html5lib")
+    #pass
+    print(Busu)
+    #opinion = Busu.find_all((class_= "views-field views-field-title"))
+    #print(opinion)
+    #return opinion
+    return opinion
 
 
 
@@ -62,8 +81,12 @@ def get_umsi_data():
 ## INPUT: The dictionary from get_umsi_data().
 ## OUTPUT: Return number of PhD students in the data.  (Don't forget, I may change the input data)
 def num_students(data):
-    pass
+    #total = 0
+    #for i in data:
+    #    total += i["students"]
+    #return total
     #Your code here
+    pass
 
 
 
